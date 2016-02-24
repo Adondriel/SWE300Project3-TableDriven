@@ -1,5 +1,6 @@
 package machine;
 import actions.Action;
+
 import actions.ContinuingFractionAction;
 import actions.ContinuingIntegerAction;
 import actions.NegateAction;
@@ -11,6 +12,7 @@ import inputVerifiers.InputVerifier;
 import inputVerifiers.MinusInputVerifier;
 import inputVerifiers.PeriodInputVerifier;
 import inputVerifiers.PlusInputVerifier;
+import machine.InterimResult;
 
 /**
  * A finite state machine that parses a string containing a real number. Will
@@ -34,13 +36,26 @@ public class ConvertingMachine {
 	};
 
 	public double parse(String text) {
-		//TODO
-		return 0;
+		InterimResult ir = new InterimResult(0.1, 1, 0);
+		State currentState = State.START;
+		Edge currentEdge = null;
+		for (int i=0; i<text.length();i++){
+			currentEdge = searchForEdge(currentState, text.charAt(i));
+			ir = currentEdge.action.execute(ir, text.charAt(i));
+			currentState = currentEdge.nextState;
+		}
+		return ir.getS()*ir.getV();
 	}
 
 	private Edge searchForEdge(State currentState, char ch) {
-		//TODO
-		return null;
+		for (int i=0;i <machine.length;i++){
+			if (machine[i].currentState.equals(currentState)){
+				if (machine[i].inputVerifier.meetsCriteria(ch)){
+					return machine[i];
+				}
+			}
+		}
+		throw new NumberFormatException();
 	}
 
 	private class Edge {

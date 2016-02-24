@@ -5,8 +5,9 @@ public class ContinuingIntegerAction implements Action {
 
 	@Override
 	public InterimResult execute(InterimResult x, char c) {
-		// TODO Auto-generated method stub
-		return null;
+		InterimResult ir = new InterimResult(x);
+		ir.setV(10 * ir.getV() + (c-'0'));
+		return ir;
 	}
 
 }

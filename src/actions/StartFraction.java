@@ -5,8 +5,9 @@ public class StartFraction implements Action {
 
 	@Override
 	public InterimResult execute(InterimResult x, char c) {
-		// TODO Auto-generated method stub
-		return null;
+		InterimResult ir = new InterimResult(x);
+		ir.setP(0.1);
+		return ir;
 	}
 
 }

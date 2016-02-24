@@ -5,8 +5,9 @@ public class NegateAction implements Action {
 
 	@Override
 	public InterimResult execute(InterimResult x, char c) {
-		// TODO Auto-generated method stub
-		return null;
+		InterimResult ir = new InterimResult(x);
+		ir.setS(-1);
+		return ir;
 	}
 
 }
