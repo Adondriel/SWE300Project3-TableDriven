@@ -1,4 +1,5 @@
 package actions;
+
 import machine.InterimResult;
 
 public class NoAction implements Action {

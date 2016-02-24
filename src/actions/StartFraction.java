@@ -1,4 +1,5 @@
 package actions;
+
 import machine.InterimResult;
 
 public class StartFraction implements Action {
@@ -9,5 +10,4 @@ public class StartFraction implements Action {
 		ir.setP(0.1);
 		return ir;
 	}
-
 }

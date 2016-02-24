@@ -1,4 +1,5 @@
 package machine;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -14,16 +15,14 @@ import org.junit.Test;
  * @author merlin
  *
  */
-public class InterimResultTest
-{
+public class InterimResultTest {
 
 	/**
 	 * Test the copy constructor (has the side effect of testing the equals
 	 * method, too
 	 */
 	@Test
-	public void copyConstructor()
-	{
+	public void copyConstructor() {
 		InterimResult x = new InterimResult(1, 2, 3.4);
 		InterimResult y = new InterimResult(x);
 		assertEquals(y, x);

@@ -1,4 +1,5 @@
 package machine;
+
 import actions.Action;
 
 import actions.ContinuingFractionAction;
@@ -35,26 +36,51 @@ public class ConvertingMachine {
 			new Edge(State.DECIMAL, new DigitInputVerifier(), new ContinuingFractionAction(), State.DECIMAL)
 	};
 
+	/**
+	 * @author Adam Pine
+	 * @param text
+	 * @return the double value of a string of text.
+	 */
 	public double parse(String text) {
+		// the initial InterimResult.
 		InterimResult ir = new InterimResult(0.1, 1, 0);
+		// the starting state.
 		State currentState = State.START;
+		// Edge is null at first, because we dont have the input yet.
 		Edge currentEdge = null;
-		for (int i=0; i<text.length();i++){
+		// Loop through the input text, for each character.
+		for (int i = 0; i < text.length(); i++) {
+			//search for the edge, for each character.
 			currentEdge = searchForEdge(currentState, text.charAt(i));
+			//Execute that edge's action, and set IR to the returned value.
 			ir = currentEdge.action.execute(ir, text.charAt(i));
+			//Set currentState to the edge's next state.
 			currentState = currentEdge.nextState;
 		}
-		return ir.getS()*ir.getV();
+		// Return the Sign * Value of the InterimResult.
+		return ir.getS() * ir.getV();
 	}
 
+	/**
+	 * @author Adam Pine
+	 * @param currentState
+	 * @param ch
+	 * @return the edge that should be used.
+	 */
 	private Edge searchForEdge(State currentState, char ch) {
-		for (int i=0;i <machine.length;i++){
-			if (machine[i].currentState.equals(currentState)){
-				if (machine[i].inputVerifier.meetsCriteria(ch)){
+		// loop through the table.
+		for (int i = 0; i < machine.length; i++) {
+			// Find check if the state matches the current state.
+			if (machine[i].currentState.equals(currentState)) {
+				// Check if the input matches the input verifier.
+				if (machine[i].inputVerifier.meetsCriteria(ch)) {
+					// if so, this is our edge! return it!
 					return machine[i];
 				}
 			}
 		}
+		// If it doesn't match anything from the table, you formatted it wrong,
+		// throw an exeception.
 		throw new NumberFormatException();
 	}
 
