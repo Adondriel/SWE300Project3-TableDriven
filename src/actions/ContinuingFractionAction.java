@@ -1,9 +1,14 @@
 package actions;
 
 import machine.InterimResult;
-
+/** 
+ * @author Adam Pine
+ */
 public class ContinuingFractionAction implements Action {
 
+	/**
+	 * The action that happens when a digit is input while in the decimal state.
+	 */
 	@Override
 	public InterimResult execute(InterimResult x, char c) {
 		InterimResult ir = new InterimResult(x);

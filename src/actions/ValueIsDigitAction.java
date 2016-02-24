@@ -6,7 +6,9 @@ import machine.InterimResult;
  *
  */
 public class ValueIsDigitAction implements Action {
-
+	/**
+	 * The action that happens when we get a digit while in the start state.
+	 */
 	@Override
 	public InterimResult execute(InterimResult x, char c) {
 		InterimResult ir = new InterimResult(x);
