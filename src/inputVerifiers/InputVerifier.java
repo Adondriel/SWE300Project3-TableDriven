@@ -1,3 +1,5 @@
+package inputVerifiers;
+
 /**
  * @author Merlin
  *

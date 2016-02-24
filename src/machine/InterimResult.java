@@ -1,3 +1,4 @@
+package machine;
 /**
  * Contains an intermediate result.  This consists of three parts:
  * <ul>

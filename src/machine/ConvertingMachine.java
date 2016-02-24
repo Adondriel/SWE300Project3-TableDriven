@@ -1,3 +1,17 @@
+package machine;
+import actions.Action;
+import actions.ContinuingFractionAction;
+import actions.ContinuingIntegerAction;
+import actions.NegateAction;
+import actions.NoAction;
+import actions.StartFraction;
+import actions.ValueIsDigitAction;
+import inputVerifiers.DigitInputVerifier;
+import inputVerifiers.InputVerifier;
+import inputVerifiers.MinusInputVerifier;
+import inputVerifiers.PeriodInputVerifier;
+import inputVerifiers.PlusInputVerifier;
+
 /**
  * A finite state machine that parses a string containing a real number. Will
  * throw NumberFormatExcaption if the string doesn't not contain a legal
@@ -16,15 +30,17 @@ public class ConvertingMachine {
 			new Edge(State.START, new PeriodInputVerifier(), new StartFraction(), State.DECIMAL),
 			new Edge(State.INTEGER, new DigitInputVerifier(), new ContinuingIntegerAction(), State.INTEGER),
 			new Edge(State.INTEGER, new PeriodInputVerifier(), new StartFraction(), State.DECIMAL),
-			new Edge(State.DECIMAL, new DigitInputVerifier(), new ContinuingFactionAction(), State.DECIMAL)
+			new Edge(State.DECIMAL, new DigitInputVerifier(), new ContinuingFractionAction(), State.DECIMAL)
 	};
 
 	public double parse(String text) {
-
+		//TODO
+		return 0;
 	}
 
 	private Edge searchForEdge(State currentState, char ch) {
-
+		//TODO
+		return null;
 	}
 
 	private class Edge {
